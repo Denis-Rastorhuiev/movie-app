@@ -5,7 +5,7 @@ import AddMovieForm from './components/AddMovieForm';
 import MovieDetails from './components/MovieDetails';
 import Login from './components/Login';
 import Register from './components/Register';
-import { Container, Button, Box, TextField, MenuItem, Alert, CircularProgress } from '@mui/material';
+import { Container, Button, Box, TextField, MenuItem, Alert } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { logout } from './store/authSlice';

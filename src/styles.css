@@ -43,7 +43,6 @@ h1, h2 {
     color: #999;
 }
 
-/* Таблиця Material-UI */
 .MuiTable-root {
     background-color: #fff;
     border-radius: 8px;
@@ -70,7 +69,6 @@ h1, h2 {
     background-color: #f5f5f5;
 }
 
-/* Поля вводу Material-UI */
 .MuiTextField-root .MuiInputBase-root {
     background-color: #fff;
     border-radius: 8px;
