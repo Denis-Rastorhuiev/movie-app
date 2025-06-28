@@ -5,7 +5,7 @@ import AddMovieForm from './components/AddMovieForm';
 import MovieDetails from './components/MovieDetails';
 import Login from './components/Login';
 import Register from './components/Register';
-import { Container, Button, Box, TextField, MenuItem, Alert } from '@mui/material';
+import { Container, Button, Box, TextField, MenuItem, Alert, CircularProgress } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { logout } from './store/authSlice';
@@ -69,26 +69,19 @@ function App() {
         <Router>
             <Container>
                 <h1>Movies App</h1>
-                <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <Button component={Link} to="/" variant="outlined">
+                <Box className="form" sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
+                    <Button className="gradient-button" component={Link} to="/">
                         Home
                     </Button>
                     {token && (
                         <>
-                            <Button component={Link} to="/add-movie" variant="outlined">
+                            <Button className="gradient-button" component={Link} to="/add-movie">
                                 Add Movie
                             </Button>
-                            <Button
-                                variant="outlined"
-                                onClick={handleRefreshMovies}
-                            >
+                            <Button className="gradient-button" onClick={handleRefreshMovies}>
                                 Refresh Movies
                             </Button>
-                            <Button
-                                variant="outlined"
-                                onClick={handleImportClick}
-                                disabled={loading}
-                            >
+                            <Button className="gradient-button" onClick={handleImportClick} disabled={loading}>
                                 Import
                             </Button>
                             <input
@@ -102,24 +95,21 @@ function App() {
                     )}
                     {!token && (
                         <>
-                            <Button component={Link} to="/login" variant="outlined">
+                            <Button className="gradient-button" component={Link} to="/login">
                                 Login
                             </Button>
-                            <Button component={Link} to="/register" variant="outlined">
+                            <Button className="gradient-button" component={Link} to="/register">
                                 Register
                             </Button>
                         </>
                     )}
                     {token && (
-                        <Button
-                            variant="outlined"
-                            onClick={() => dispatch(logout())}
-                        >
+                        <Button className="gradient-button" onClick={() => dispatch(logout())}>
                             Logout
                         </Button>
                     )}
                     {token && (
-                        <Box component="form" onSubmit={handleSubmit(onSearch)} sx={{ display: 'flex', gap: 1 }}>
+                        <Box component="form" onSubmit={handleSubmit(onSearch)} sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                             <TextField
                                 select
                                 label="Search By"
@@ -138,10 +128,10 @@ function App() {
                                 error={!!errors.query}
                                 helperText={errors.query?.message}
                             />
-                            <Button type="submit" variant="contained" size="small">
+                            <Button className="gradient-button" type="submit">
                                 Search
                             </Button>
-                            <Button variant="outlined" size="small" onClick={handleClearSearch}>
+                            <Button className="gradient-button" onClick={handleClearSearch}>
                                 Clear
                             </Button>
                         </Box>

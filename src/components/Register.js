@@ -9,7 +9,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { loading, error } = useSelector((state) => state.auth);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
     const onSubmit = async (data) => {
         console.log('Register data:', data);
@@ -23,15 +23,8 @@ const Register = () => {
 
     return (
         <Container maxWidth="sm">
-            <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
-                <TextField
-                    label="Name"
-                    fullWidth
-                    margin="normal"
-                    {...register('name', { required: 'Name is required' })}
-                    error={!!errors.name}
-                    helperText={errors.name?.message}
-                />
+            <h2>Register</h2>
+            <Box component="form" onSubmit={handleSubmit(onSubmit)} className="form" sx={{ mt: 3 }}>
                 <TextField
                     label="Email"
                     type="email"
@@ -46,6 +39,15 @@ const Register = () => {
                     })}
                     error={!!errors.email}
                     helperText={errors.email?.message}
+                />
+                <TextField
+                    label="Name"
+                    type="text"
+                    fullWidth
+                    margin="normal"
+                    {...register('name', { required: 'Name is required' })}
+                    error={!!errors.name}
+                    helperText={errors.name?.message}
                 />
                 <TextField
                     label="Password"
@@ -71,13 +73,13 @@ const Register = () => {
                     error={!!errors.confirmPassword}
                     helperText={errors.confirmPassword?.message}
                 />
-                <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={loading}>
+                <Button type="submit" className="gradient-button" disabled={loading} sx={{ mt: 2 }}>
                     Register
                 </Button>
                 {loading && <CircularProgress sx={{ mt: 2 }} />}
                 {error && (
                     <Alert severity="error" sx={{ mt: 2 }}>
-                        {typeof error === 'object' && error.code === 'USER_EXISTS'
+                        {typeof error === 'object' && error.code === 'USER_ALREADY_EXISTS'
                             ? 'User with this email already exists'
                             : error || 'Failed to register'}
                     </Alert>

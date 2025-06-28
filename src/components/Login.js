@@ -21,7 +21,8 @@ const Login = () => {
 
     return (
         <Container maxWidth="sm">
-            <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
+            <h2>Login</h2>
+            <Box component="form" onSubmit={handleSubmit(onSubmit)} className="form" sx={{ mt: 3 }}>
                 <TextField
                     label="Email"
                     type="email"
@@ -46,7 +47,7 @@ const Login = () => {
                     error={!!errors.password}
                     helperText={errors.password?.message}
                 />
-                <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }} disabled={loading}>
+                <Button type="submit" className="gradient-button" disabled={loading} sx={{ mt: 2 }}>
                     Login
                 </Button>
                 {loading && <CircularProgress sx={{ mt: 2 }} />}

@@ -20,9 +20,9 @@ const MovieList = () => {
         navigate(`/movies/${id}`);
     };
 
-    if (!token) return <Alert severity="warning">Please log in to view movies.</Alert>;
+    if (!token) return <Alert severity="warning" sx={{ mb: 2 }}>Please log in to view movies.</Alert>;
     if (loading) return <CircularProgress />;
-    if (error) return <Alert severity="error">{error}</Alert>;
+    if (error) return <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>;
 
     const displayMovies = isSearchActive && searchResults.length > 0
         ? [...searchResults].sort((a, b) => a.title.localeCompare(b.title))
@@ -32,7 +32,7 @@ const MovieList = () => {
     console.log('Display movies:', displayMovies);
 
     if (displayMovies.length === 0) {
-        return <Alert severity="info">No movies found.</Alert>;
+        return <Alert severity="info" sx={{ mb: 2 }}>No movies found.</Alert>;
     }
 
     return (
@@ -51,14 +51,16 @@ const MovieList = () => {
                     {displayMovies.map((movie) => (
                         <TableRow
                             key={movie.id || movie.title}
+                            className="table-row"
                             onClick={() => handleRowClick(movie.id)}
-                            sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' } }}
+                            sx={{ cursor: 'pointer' }}
                         >
                             <TableCell>{movie.title}</TableCell>
                             <TableCell>{movie.year}</TableCell>
                             <TableCell>{movie.format}</TableCell>
                             <TableCell onClick={(e) => e.stopPropagation()}>
                                 <Button
+                                    className="gradient-button"
                                     variant="contained"
                                     color="error"
                                     onClick={() => dispatch(asyncDeleteMovie(movie.id))}
